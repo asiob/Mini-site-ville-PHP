@@ -1,3 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+    
 <?php
 //fichier inclus : inc_menu.php contien le menu de nav des villes
 require ('inc_connexion.php');
@@ -10,7 +21,7 @@ while ($row = $result ->fetch_array())
     $villes [$row['ville_id']] = $row['ville_nom'];
 }
 //affichage
-$id = $_GET['id'];
+// $id = $_GET['id'];
 ?>
 <div class="zone-texte">
 
@@ -19,11 +30,11 @@ $id = $_GET['id'];
 <p>L'administration du site vous permet d'jaouter une nouvelle ville au site ou de modifier ou supprimer une ville existante</p>
 <p>Liste des villes</p>
 
-</div>
+
 
 
 <ul>
-    <li> <a href="index.php">Acceuil</a> </li>
+    <li> <a href="index.php">Accueil</a> </li>
 
     <?php foreach ($villes as $id => $ville) : ?>
     <li> 
@@ -37,6 +48,14 @@ $id = $_GET['id'];
    
     <?php endforeach ?>
 </ul>
+</div>
 <ul>
     <li><a href="admin.php?id=<?php echo $id ?>"> <?php echo "Administration" ?> </a> </li>
+    <li><a href="ajout.php?id=<?php echo $id ?>"> <?php echo "Ajouter une ville" ?> </a> </li>
+    <br>
+    <li><a href="index.php?id=<?php echo $id ?>"> <?php echo "Voir le site" ?> </a> </li>
 </ul>
+
+</body>
+</html>
+
