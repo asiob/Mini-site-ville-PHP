@@ -1,0 +1,15 @@
+body{
+    display: flex;
+   justify-content: center;
+   margin-top: 20px;
+}
+
+h1{
+    color: rgb(25, 196, 196);
+    font-size: 18px;
+}
+.zone-texte {
+    width: 400px;
+    border: rgb(25, 196, 196) solid 1px;
+    padding: 10px;
+}
