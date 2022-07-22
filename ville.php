@@ -30,5 +30,17 @@ $texte = $row['ville_texte'];
     
     <?php require ('inc_menu.php') ?>
     <?php require ('inc_footer.php') ?>
+
+<?php
+//retourne le pays
+$resultat = $mysqli->query("SELECT pays_id, pays_nom FROM pays WHERE pays_id = " . $ville_pays_id); 
+$row = $resultat->fetch_array();
+$pays_nom = $row['pays_nom'];
+
+$mysqli->query('SELECT pays_nom, ville_nom FROM pays INNER JOIN villes WHERE villes.pays_id = pays.pas_id');
+
+?>
+
+
 </body>
 </html>

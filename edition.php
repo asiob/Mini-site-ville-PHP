@@ -32,7 +32,7 @@
             }
             else
              {
-            $message = '<p class="error"> La mise à jour de la ville '. $ville_nom .' n\'est pas effectuée .</p>';
+                $message = '<p class="error"> La mise à jour de la ville '. $ville_nom .' n\'est pas effectuée .</p>';
             }
         }
     }
@@ -67,7 +67,40 @@ $texte = $row['ville_texte'];
 
     </div>
 
+<?php  
+// modifier la page de mise à jour 
+    $result = $mysqli->query("SELECT p.id, pays_nom FROM pays as p INNER JOIN villes as v WHERE v.pays_id = p.id ORDER BY pays_nom"); 
+while ($row = $result->fetch_array())
+{
+    // creation du nouvel array pour afficher ulterieur
+    $pays_liste [$row['id']] = $row['pays_nom'];
+}
 
+//verifier si le pays est déjà associé à une ville 
+$resultat = $mysqli->query("SELECT ville_id, ville_nom, ville_texte, pays_id FROM villes WHERE ville_id = " . $id); 
+$row = $resultat->fetch_array();
+// variable destiné  l'affichage
+$nom = $row['ville_nom'];
+$texte = $row['ville_texte'];
+$ville_pays_id = $row['pays_id'];
+?>
+  
+<?php foreach($pays_liste as $id => $pays): ?>
+    <!-- <li> <a href="pays.php?id=<?php //echo $id ?>"> <?php // echo $pays ?> </a> </li> -->
+<?php endforeach ?>
+
+
+<ul>
+<?php
+//afficher les resultats
+foreach ($pays_liste as $pays_id => $pays_nom): ?>
+<?php if ($ville_pays_id == $pays_id ): ?>
+    <li class="bg_gris"> <input checked="checked" type="radio" name="pays_id" value="<?php echo $pays_id ?> "/> <?php echo $pays_nom ?> </li>
+<?php else : ?>
+    <li> <input type="radio" name="pays_id" value=" <?php echo $pays_id ?> "/> <?php echo $pays_nom ?> </li>
+<?php endif ?>
+<?php endforeach ?>
+</ul>
 
 </body>
 </html>
