@@ -20,7 +20,14 @@ while ($row = $result ->fetch_array())
     // creation du nouvel array pour afficher ulterieur
     $villes [$row['ville_id']] = $row['ville_nom'];
 }
-//affichage
+
+$result_pays = $mysqli->query ('SELECT pays_id, pays_nom FROM pays ');
+// fetch_array  qui accede aux données stoquées
+while ($row = $result_pays ->fetch_array())
+{
+    // creation du nouvel array pour afficher ulterieur
+    $pays[$row['pays_id']] = $row['pays_nom'];
+}
 ?>
 <ul>
     <li> <a href="index.php">Acceuil</a> </li>
@@ -33,8 +40,15 @@ while ($row = $result ->fetch_array())
     <?php endforeach ?>
     <br>
     <li><a href="admin.php">Administration</a> </li>
+    
+    <h4>Pays</h4>
 
-
+    <?php foreach ($pays as $id => $p) : ?>
+    <li> 
+        
+        <a href="pays.php?id=<?php echo $id ?>"> <?php echo $p ?> </a> 
+    </li>
+    <?php endforeach ?>
 </ul>
 </body>
 </html>
